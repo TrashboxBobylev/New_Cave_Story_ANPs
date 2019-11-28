@@ -1,0 +1,113 @@
+ANP things or whatever
+
+Generic ANP:
+- 0000: goes to ANP0001 immediately
+	- if NPC have (U0) after his name, ANP 0000 does something different
+- I do not recommend to use ANP, which listed after "goes to XXXX", because that "empty" events fills some important variables or changes sprite of NPCs.
+
+NPC 0 - Null:
+- 0000: if direction is altered, moves 1 block down
+- 0001: does nothing
+
+NPC 1 - Experience:
+- 0000: sets random speed and animation frame
+
+NPC 2 - Behemoth (U0)
+- 0000: walks on ground
+- 0001: stops in place, as after getting a shot, if stays more that 40 ticks in this state, goes to 0002
+- 0002: charges on ground, goes to 0000 after 200 ticks
+
+NPC 3 - Dead enemy (null_disappear)
+- Doesn't have any ANPs
+
+NPC 4 - Smoke
+- 0000: sets random speed
+
+NPC 5 - Green Critter from Egg Corridor
+- 0001: idle state, if sees player or gets damage, goes to 0002
+- 0002: jumping, after 8 ticks goes to 0003
+- 0003: if lands, goes to 0000
+
+NPC 6 - Beetle, that goes left and right
+- 0000: goes to 0001 or 0002 depends on direction
+- 0001: moves to left with acceleration, if hit wall, goes to 0002
+- 0002: idle, after 60 ticks goes to 0003
+- 0003: moves to right with acceleration, if hit wall, goes to 0004
+- 0004: idle, after 60 ticks goes to 0001
+
+NPC 7 - Basil
+- 0000: moves to player's X position, goes to 0001 or 0002 depends on direction
+- 0001: accelerates to left, if too far from player, goes to 0002
+- 0002: accelerates to right, if too far from player, goes to 0001
+
+NPC 8 - Following Beetle (U0)
+- 0000: if player are nearby to NPC's position (1 block), becomes damageable, spawns an 10 blocks away from player in direction, opposite to their direction, and goes to 0001, otherwise can't be seen and damaged
+- 0001: follows player
+
+NPC 9 - Falling Balrog
+- 0001: falls to ground, if hits ground, spawns smoke and quake, after first 40 ticks can't pass through blocks
+- 0002: just waits
+
+NPC 10 - Shooting Balrog
+- 0001: after 12 ticks goes to 0002
+- 0002: shoots 3 balls with 16 ticks gap, after shooting goes to 0003
+- 0003: after 3 ticks goes to 0004 and jumps towards player
+- 0004: on landing goes to 0005 and creates quake
+- 0005: after 3 ticks goes to 0001
+
+NPC 11 - Shooting Balrog's Projectile
+- Doesn't have any ANPs
+
+NPC 12 - Balrog (cutscene)
+- 0000: if direction is 4, chooses direction towards player
+- 0001-0002: blinking eyes
+- 0010: if direction is 4, chooses direction towards player, goes to 0011
+- 0011: after 30 ticks moves upward, ignoring blocks, goes to 0012
+- 0012: after leaving a screen makes quake and disappears
+- 0020: if direction is 4, chooses direction towards player, goes to 0021, switches to panic face, creates smoke
+- 0021: creates smoke, moves upward with shaking, goes to 0011 after 100 ticks
+- 0030: smiles, after 100 ticks goes to 0000
+- 0040: if direction is 4, chooses direction towards player, goes to 0041
+- 0041: have panic face
+- 0042: if direction is 4, chooses direction towards player, goes to 0043
+- 0043: have blinking sprite
+- 0050: turns back and reset velocity
+- 0060: goes to 0061
+- 0061: walks in their direction, makes step sounds
+- 0070: goes to 0071, makes teleporting sounds
+- 0071: disappears after 64 ticks
+- 0080: goes to 0081
+- 0081: shakes in panic
+- 0100: goes to 0101
+- 0101: moves upward, ignores blocks, spawns Quote and Curly on itself, removes Quote and Curly NPCs, goes to 102 after 20 ticks
+- 0102: breaks blocks on their way, disappears after passing some vertical distance
+
+NPC 13 - Forcefield
+- Doesn't have any ANPs
+
+NPC 14 - Santa's Key
+- 0000: moves key upward and spawns smoke, if direction is 2
+
+NPC 15 - Closed Chest
+- 0000: moves chest upward and spawns smoke, if direction is 2
+- 0001: with 1/30 chance goes to 0002
+- 0002: puts light on chest and goes to 0001
+
+NPC 16 - Save Point
+- 0000: moves save upward and spawns smoke, if direction is 2
+- 0001: become interactable, if on ground
+
+NPC 17 - Refill Station
+- 0000: moves save upward and spawns smoke, if direction is 2
+- 0001-0004: randomly swaps red image and black image on sprite
+
+NPC 18 - Door (U0)
+- 0000: chooses rect depends on direction
+- 0001: spawns smoke and goes to 0000
+
+NPC 19 - Balrog, that crushes through door
+- 0000: moves upward for some distance, spawns smoke, sounds and quake
+- 0001: falls, if hit ground goes to 0002
+- 0002: after 16 ticks goes to 0003
+- 0003: switches sprite rects in random rate
+
